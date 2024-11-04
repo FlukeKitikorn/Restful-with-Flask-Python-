@@ -1,4 +1,4 @@
-from flask import Flask, Request, jsonify
+from flask import Flask, Request, jsonify, abort
 
 app = Flask(__name__)
 
@@ -19,6 +19,14 @@ user = [
 def get_users():
     return jsonify(user), 200
 
+@app.route('/users/<int:ID>', methods=['GET'])
+def get_users_by_ID(ID):
+    user_data = next((u for u in user if u["ID"] == ID), None)
+    if user_data is None:
+        abort(404)
+    return jsonify(user_data), 200
+
+
 @app.route('/users', methods=['POST'])
 def create_users():
     new_user = {'ID':len(user) + 1, 'name': "People ",'Role': "Engineer"}
@@ -29,6 +37,8 @@ def create_users():
 def update_users():
     new_user = {"ID": 1,"name": 'foo',"career": 'Teacher'}
     return jsonify(new_user)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
