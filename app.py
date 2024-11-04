@@ -1,4 +1,4 @@
-from flask import Flask,Request, jsonify
+from flask import Flask, Request, jsonify
 
 app = Flask(__name__)
 
@@ -14,3 +14,10 @@ user = [
     {"ID": 9,"name": "User 9","career": "Role 9"},
     {"ID": 10,"name": "User 10","career": "Role 10"}
 ]
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    return jsonify(user), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
