@@ -39,9 +39,14 @@ headers = {'Content-type': 'application/json; charset=UTF-8'}
 res = requests.put(url=API_ENDPOINT_PUT, json=payload, headers=headers)
 print(res.json())'''
 
+'''
 data = {'title': 'foo'}
 headers = {'Content-type': 'application/json; charset=UTF-8'}
 
 res = requests.patch(url=API_ENDPOINT_PATCH, json=data, headers=headers)
+print(res)
+print(res.json())'''
+
+res = requests.delete(url=API_ENDPOINT_PATCH)
 print(res)
 print(res.json())
