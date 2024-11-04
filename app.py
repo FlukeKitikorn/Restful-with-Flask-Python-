@@ -19,5 +19,16 @@ user = [
 def get_users():
     return jsonify(user), 200
 
+@app.route('/users', methods=['POST'])
+def create_users():
+    new_user = {'ID':len(user) + 1, 'name': "People ",'Role': "Engineer"}
+    user.append(new_user)
+    return jsonify(new_user), 201
+
+@app.route('/users/1', methods=['PUT'])
+def update_users():
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
